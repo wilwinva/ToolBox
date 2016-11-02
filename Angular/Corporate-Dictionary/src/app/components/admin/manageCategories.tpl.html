@@ -1,0 +1,44 @@
+<div id="editCategory" class="row" ng-init="addCategory = false;">
+    <h1><span ng-bind="addCategory ? 'Add' : 'Edit'"></span> a Category</h1>
+    <div class="content">
+        <div class="row required">
+            <span class="glyphicon glyphicon-asterisk col-sm-12"> Required</span>
+        </div>
+        <div class="row" ng-show="!addCategory">
+            <label class="col-sm-3" ng-show="!addCategory">Category:</label>
+            <span class="glyphicon glyphicon-asterisk clean" ng-show="!addCategory"></span>
+            <input name="key" value="A" type="hidden"/>
+            <select class="" id="category" name="category"
+                    title="Limit terms to a category." ng-model="ctrl.filterCategory"
+                    ng-options="option.name for option in ctrl.categoryOptions" ng-show="!addCategory">
+                <option value="" selected disabled>Category</option>
+            </select>
+            <md-button ng-click="addCategory = true;" class="btn btn-link pull-right">Add Category</md-button>
+        </div>
+        <div class="row" ng-show="ctrl.filterCategory.name.length > 0 && !addCategory">
+            <label class="col-sm-3">Category Name</label>
+            <span class="glyphicon glyphicon-asterisk required"></span>
+            <input type="text" class="catDesc" value="{{ctrl.filterCategory.name}}">
+        </div>
+        <div class="row" ng-show="addCategory">
+            <label class="col-sm-3">Category Name</label>
+            <span class="glyphicon glyphicon-asterisk required"></span>
+            <input type="text" class="catDesc" value="">
+            <md-button ng-click="addCategory = false;" class="btn btn-link pull-right">Edit Category</md-button>
+        </div>
+    </div>
+    <div class="row" id="categoryActions">
+        <hr/>
+        <span class="pull-right">
+            <button ng-click="ctrl.cancel();addCategory=false;">
+                Cancel
+            </button>
+            <button ng-click="" ng-if="!addCategory">
+                Delete
+            </button>
+            <button ng-click="">
+                Submit
+            </button>
+        </span>
+    </div>
+</div>
